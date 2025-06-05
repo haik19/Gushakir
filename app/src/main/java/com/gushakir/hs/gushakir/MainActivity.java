@@ -3,17 +3,12 @@ package com.gushakir.hs.gushakir;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,11 +108,12 @@ public class MainActivity extends FragmentActivity {
 		int blockWidth = blockHeight = deviceWidth / row;
 		gridLayout.getLayoutParams().height = row * blockHeight;
 
-		for (int i = 0; i < blocksCount; i++) {
-			View view = new View(this);
-			view.setLayoutParams(new LinearLayout.LayoutParams(blockWidth, blockHeight));
-			view.getLayoutParams().width = blockWidth;
-			view.getLayoutParams().height = blockHeight;
+                for (int i = 0; i < blocksCount; i++) {
+                        View view = new View(this);
+                        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                        params.width = blockWidth;
+                        params.height = blockHeight;
+                        view.setLayoutParams(params);
 			view.setOnClickListener(onClickListener);
 			view.setBackgroundResource(R.drawable.square_item_gradient_background);
 			gridLayout.addView(view);
