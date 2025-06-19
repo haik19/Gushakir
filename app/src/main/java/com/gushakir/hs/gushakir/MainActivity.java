@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.util.Log;
+
+import com.gushakir.hs.gushakir.presentation.DataViewModel;
+import org.koin.java.KoinJavaComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +41,12 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		GameUtils.hideSystemUI(getWindow());
-		setContentView(R.layout.activity_main);
-		getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+                setContentView(R.layout.activity_main);
+
+                DataViewModel viewModel = KoinJavaComponent.get(DataViewModel.class);
+                Log.d("MainActivity", "Loaded data: " + viewModel.loadData());
+
+                getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
 			@Override
 			public void onSystemUiVisibilityChange(int i) {
 				GameUtils.hideSystemUI(getWindow());
